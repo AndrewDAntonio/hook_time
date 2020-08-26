@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useForm} from '../hooks/useForm.js'
 import {useFetch} from '../hooks/useFetch.js'
 
 const Form = () => {
     const [values, handleChange] = useForm({email: '', password: '', firstName: ''})
-    const {data, loading} = useFetch("http://numbersapi.com/43/trivia")
+    const [count, setCount] = useState(0);
+    const {data, loading} = useFetch(`http://numbersapi.com/${count}/trivia`)
     // useEffect(() => {
     //     const onMouseMove = e => {
     //         console.log(e)
@@ -31,6 +32,10 @@ const Form = () => {
             <label>Password</label>
             <input type='password' name='password' value={values.password} onChange={handleChange}/>
         </div>
+        <div>
+            Number Fact: {loading ? 'loading...' : data}
+        </div>
+        <button onClick={() => setCount(c => c + 1)}>Click for a new fact!</button>
         </>
         
     )
