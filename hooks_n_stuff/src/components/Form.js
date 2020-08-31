@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useRef } from 'react'
 import {useForm} from '../hooks/useForm.js'
 import {useFetch} from '../hooks/useFetch.js'
 
@@ -6,6 +6,8 @@ const Form = () => {
     const [values, handleChange] = useForm({email: '', password: '', firstName: ''})
     const [count, setCount] = useState(0);
     const {data, loading} = useFetch(`http://numbersapi.com/${count}/trivia`)
+    const inputRef= useRef();
+    
     // useEffect(() => {
     //     const onMouseMove = e => {
     //         console.log(e)
@@ -26,7 +28,7 @@ const Form = () => {
         </div>
         <div>
             <label>Email</label>
-            <input name='email' value={values.email} onChange={handleChange}/>
+            <input ref={inputRef} name='email' value={values.email} onChange={handleChange}/>
         </div>
         <div>
             <label>Password</label>
@@ -36,6 +38,7 @@ const Form = () => {
             Number Fact: {loading ? 'loading...' : data}
         </div>
         <button onClick={() => setCount(c => c + 1)}>Click for a new fact!</button>
+        <button onClick={() => {inputRef.current.focus()}}>focus</button>
         </>
         
     )

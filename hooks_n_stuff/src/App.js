@@ -4,6 +4,8 @@ import Counter from './components/Counter.js'
 import Form from './components/Form.js'
 
 function App() {
+
+  
   
   return  (
     <>
@@ -11,6 +13,7 @@ function App() {
     <Counter/>
     <h2>Form</h2>
     <Form/>
+    <h3>App stuff</h3>
     </>
     
   )
